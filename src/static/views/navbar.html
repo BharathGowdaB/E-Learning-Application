@@ -1,0 +1,94 @@
+<nav ng-controller="Navbar">
+    <div  class='logo'>
+        <img src='/static/images/icons/logo2.png'>
+    </div>
+    <ul>
+        <li ng-repeat="x in links"  ng-click="redirect(e,x.href)"><span>{{ x.name }}</span></li>
+    </ul>
+    <div class="profile" >
+        <div ng-click="clickPic()">
+            <img  class='userpic' ng-attr-src="{{avatar}}">
+        </div>
+        <div ng-show="logoutActive" class="logout-option">
+            <div class="edit-profile">
+                <img ng-attr-src="{{avatar}}">
+                <input type="file" ng-model='newProfilePic' onchange="angular.element(this).scope().uploadAvatar()" id="new-profile-pic" accept="image/jpg, image/png, image/jpeg">
+                <label for="new-profile-pic"><img class="new-pic" title="new avatar"src="/static/images/icons/camera.png"></label>
+                <label ng-click="deleteAvatar()"><img class="delete-pic" title="delete avatar" src="/static/images/icons/delete-avatar.png"></label>
+            </div>
+            <form name="editform" class="edit-form" ng-submit="saveProfile($event)">
+                
+                <div class="field-block">
+                    <div class="input-field-2 tmargin-16">
+                        <input ng-model="user.firstname" name="firstname" title="Use only alphabets and space" pattern="[a-zA-Z ]+" type="text" placeholder="Firstname *" required>
+                        <error ng-show="editform.firstname.$dirty && editform.firstname.$invalid">
+                            <li>use only alphabets and space.</li>
+                        </error>
+                    </div>
+                    <div class="input-field-2 tmargin-16">
+                        <input ng-model="user.lastname" name="lastname" title="Use only alphabets and space"  type="text" placeholder="Lastname">
+                    </div>
+                </div>
+               
+                <div class="input-field-2 tmargin-16">
+                    <input ng-model="user.email" name="email" ng-change="signupError=undefined" type="email" title="Cannot edit email" disabled>
+                </div>
+                <div class="field-block">
+                    <div class="input-field-2 tmargin-16">
+                        <input  ng-model='user.phone' name="phone"  placeholder="Contact" >
+                    </div>
+                    <div class="input-field-2 tmargin-16">
+                        <input ng-model='user.university' name="university"  type="text" placeholder="University" >
+                    </div>
+                </div>
+
+                <div class="button-block tmargin-16 button">
+                    <input type="submit"  class="save-button" value="Save"/>
+                    <div ng-show="saveError">
+                        <error>{{saveError}}</error>
+                    </div>
+                </div>
+
+            </form>
+            <form name="newpasswordform" class="edit-form" ng-submit="resetPassword($event)">
+                <div class="field-block">
+                    <div class="input-field-2 tmargin-16">
+                        <input  ng-model='user.oldPassword' name="oldpassword"  type="text" placeholder="Old Password *" required>
+                    </div>
+                </div>
+               
+                <div class="field-block">
+                    <div class="input-field-2 tmargin-16">
+                        <input  ng-model='user.newPassword' name="password"  pattern="[a-zA-Z0-9@#$_]{6,}" type="Password" title="Password must have atleast 6 characters" placeholder="Password *" required>
+                        <error class="password-pattern" ng-show="newpasswordform.password.$dirty && newpasswordform.password.$invalid">
+                            <li>use only numerbers, alphabets and special characters(_@#$).</li>
+                            <li>must have atleast 6 characters.</li>
+                        </error>
+                    </div>
+                </div>
+                <div class="field-block">
+                    <div class="input-field-2 tmargin-16">
+                        <input  ng-model='user.rePassword' name="repassword"  type="text" placeholder="Confirm Password *" >
+                        <error ng-show="newpasswordform.repassword.$dirty && user.password !== user.repassword">
+                            <li>passwords are not matching.</li>
+                        </error>
+                    </div>
+                </div>
+            
+                <div class="button-block tmargin-16 button">
+                    <input type="submit"  class="save-button" value="Reset Password"/>
+                    <div ng-show="resetError">
+                        <error>{{resetError}}</error>
+                    </div>
+                </div>
+        
+            </form>
+            <div class="logout">
+                <button ng-click="logout()" title="logout">Logout</button>
+            </div>
+            <div class="logout-all tmargin-16">
+                <a  ng-click="logoutAll()">Logout from every devices? click me</a>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,150 @@
+
+#signup-page{
+    position: relative;
+    text-align: center;
+}
+
+#signup-page .logo{
+    width : 200px;
+    margin: auto;
+}
+
+.signup-bg {
+    position: absolute;
+}
+
+.signup-bg img{
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
+
+.signup-form{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.signup-form form{
+    background-color: var(--white);
+    z-index: 2;
+    position: relative;
+    margin: auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 2px grey;
+}
+
+
+.signup-form .login-type {
+    display: flex;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    padding: 2px;
+    font-size: 14px;
+    margin-left: 10px;
+    width: max-content;
+    position: relative;
+    top: 24px;
+}
+
+.signup-form .login-type-bg{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 12px;
+    background-color: var(--bg_blue);
+    z-index: 1;
+}
+
+.signup-form .login-type label {
+    z-index: 2;
+    width: 90px;
+    padding: 0px 16px;
+}
+
+.signup-form .login-type input{
+    display: none;
+}
+
+.signup-form .login-type input:nth-child(1) + label {
+    color: var(--b_black);
+    transition: color 0.1s 0.1s;
+}
+
+.signup-form .login-type input:nth-child(1):checked + label{
+    color: var(--white);
+    transition: color 0.2s 0.1s;
+}
+
+.signup-form .login-type input:nth-child(1):checked ~ .login-type-bg{
+    transform: translateX(0);
+    transition: transform 0.5s;
+}
+
+.signup-form .login-type input:nth-child(3) + label {
+    color: var(--b_black);
+    transition: color 0.1s 0.1s;
+}
+
+.signup-form .login-type input:nth-child(3):checked + label{
+    color: var(--white);
+    transition: color 0.2s 0.1s;
+}
+
+.signup-form .login-type input:nth-child(3):checked ~ .login-type-bg{
+    transform: translateX(100%);
+    transition: transform 0.5s;
+}
+
+
+
+.signup-form .field-block{
+    display: flex;
+}
+
+.signup-form  .input-field-2{
+    padding: 10px;
+}
+
+.signup-form .signup-button{
+    width: 100%;
+    background-color: var(--bg_green);
+    color: var(--white);
+    border:none;
+    padding: 6px;
+    border-radius: 4px;
+}
+
+.signup-form .signup-button:hover{
+    background-color: var(--bg_dark_green);
+}
+
+.signup-form .signup-error{
+    font-size: 12px;
+    color: red;
+}
+
+.login-link{
+    width: 90%;
+    border-top: 1px solid var(--b_gray);
+    padding-top: 10px;
+    margin: 10px auto 0px;
+    font-size: 14px;
+    
+}
+
+.login-link a{
+    color: var(--bg_dark_blue);
+    text-decoration: none;
+}
+
+.login-link span{
+    text-decoration: underline;
+    padding-left: 6px;
+}

@@ -1,0 +1,123 @@
+<div ng-include="'static/views/navbar.html'" class="nav-bar"></div>
+
+<div class="course-page">
+    <input id="hide-course-list" ng-model="flags.hideCourseList" type="checkbox"> 
+    <label class='double-arrow-show left-0' title="show course list" ng-show="flags.hideCourseList" for="hide-course-list"><img  src='/static/images/icons/double-right-arrow.svg'></label>
+    
+  
+    <coursetable course-id="_id" new-course="hide" load-page-function="loadCourseList" pagination-manager="rootSortManager.courseList" new-label-function="newCourse" load-label-function="loadStudents" flags="flags" list="list" course-list ="courseList"></coursetable>
+    <!-- <div class="course-table" ng-show="!flags.hideCourseList">
+        <div class="list-title">
+            <span>Course List</span>
+            <input id="hide-course-list" ng-model="flags.hideCourseList" type="checkbox"> 
+            <label class='double-arrow-hide rot-180' title="hide course list" for="hide-course-list"><img  src='/static/images/icons/double-right-arrow.svg'></label>
+        </div>
+        <ul class="course-list">
+            <li  class="course-label new-course" ng-show="!list.courseId">
+                <input type="radio"  ng-model="list.courseId" name="course-list" id='radio-new-course' value="{{undefined}}">
+                <label for="radio-new-course" ng-click="newCourse()">
+                    <span>Create New Course</span>
+                    <div class="arrow" ><img src='static/images/icons/right-arrow.png'></div>
+                </label>
+            </li>
+            <li class="course-label" ng-repeat="x in courseList">
+                <input type="radio" ng-model="list.courseId"  ng-click="loadStudents()" name="course-list" id="{{x._id}}" value="{{x._id}}" >
+                <label  for="{{x._id}}" ng-click="list.isCourseCard = true" >
+                    <span>{{x.title}}</span>
+                    <div class="arrow" ><img src='static/images/icons/right-arrow.png'></div>
+                </label>
+            </li> 
+        </ul>
+        <pagination list="rootSortManager.courseList" callback="loadCourseList" id="course"></pagination>
+        
+    </div> -->
+
+    <div class="course-card-container" >
+        <div class="student-container">
+        <table class="student-table" >
+            <tbody>
+            <tr class="student-header text-center">
+                <th class="student-slno">Sl.No.</th>
+                <th class="student-firstname"> Firstname </th>
+                <th class="student-lastname">Lastname</th>
+                <th class="student-email">Email</th>
+                <th class="student-createdAt">    
+                    <input type="checkbox" ng-model="flags.createdAtDesc" ng-change="loadStudents()" id="is-createdAtDesc">                 
+                    <label for="is-createdAtDesc" class="sort-container">
+                        <span>Enrolled On</span>
+                        <img  title="Order By" ng-class="{'sort-arrow': true, 'rot-180': flags.createdAtDesc}"  src="static/images/icons/long-arrow-down.svg">
+                    </label>
+                </th>
+                <th class="student-options">Action</th>
+            </tr>
+            <tr ng-repeat="(i, s) in studentList"  class="chapter-row">
+                <td class="student-slno"> {{i + 1 + sortManager.studentList.skip}}</td>
+                <td class="student-firstname">{{s.student.firstname}}</td>
+                <td class="student-lastname">{{s.student.lastname}}</td>
+                <td class="student-email">{{s.student.email}}</td>
+                <td class="student-createdAt">{{createdAtToString(s.createdAt)}}</td>
+                <td class="student-options">
+                    <img class="student-details" src='/static/images/icons/student-detail.png' ng-click="loadStudentDetails(i)">
+                </td>
+            </tr>
+            <tr  ng-show="studentList.length == 0">
+                <td colspan="5" class="empty-table">No Student has registered to current course</td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <pagination pagination-manager="sortManager.studentList" load-page-function="loadStudents" id="student"></pagination>
+
+    </div>
+
+    <div class="student-profile profile"  ng-show="!flags.hideStudentDetails">
+        <div class="list-title">
+            <span>Student Detail</span>
+        </div>
+        <img class='close' title='close' ng-click="flags.hideStudentDetails = true" src='/static/images/icons/close.png'>
+        <div class="container">   
+            <div class="edit-profile">
+                <img ng-attr-src="{{'/student/id/' + (student._id || 'nil')+ '/avatar'}}">
+            </div>
+            <div  class="edit-form" >
+                <div class="field-block">
+                    <label>Firstname</label>
+                    <div class="input-field-2 tmargin-16 flex-grow">
+                        <input ng-model="student.firstname" disabled>
+                    </div>
+                </div>
+                <div class="field-block">
+                    <label>Lastname</label>
+                    <div class="input-field-2 tmargin-16 flex-grow">
+                        <input ng-model="student.lastname" disabled>
+                    </div>
+                </div>
+
+                <div class="field-block">
+                    <label>Email</label>
+                    <div class="input-field-2 tmargin-16 flex-grow">
+                        <input ng-model="student.email" disabled>
+                    </div>
+                </div>
+                
+                <div class="field-block">
+                    <label>Phone</label>
+                    <div class="input-field-2 tmargin-16 flex-grow">
+                        <input ng-model="student.phone" disabled>
+                    </div>
+                </div>
+                <div class="field-block">
+                    <label>University</label>
+                    <div class="input-field-2 tmargin-16 flex-grow">
+                        <input ng-model="student.university" disabled>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<message-logger logger="logger"></message-logger>

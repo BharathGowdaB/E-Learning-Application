@@ -1,0 +1,69 @@
+<div id='signup-page'>
+    <div class="signup-bg">
+        <img src="/static/images/bg/background1.jpg">
+    </div>
+    <div class="signup-form">
+        <form name="signupform" ng-submit="create($event)">
+            <div>
+                <img class='logo' src='static/images/icons/logo.png'>
+            </div>
+            <div class="login-type">
+                <input type="radio" id="type-student" ng-model="user.type" value="student" checked><label for='type-student'>Student</label>
+                <input type="radio" id="type-instructor" ng-model="user.type" value="instructor"><label for='type-instructor'>Instructor</label>
+                <div class="login-type-bg"></div>
+            </div>
+            <div class="field-block">
+                <div class="input-field-2 tmargin-16">
+                    <input ng-model="user.firstname" name="firstname" title="Use only alphabets and space" pattern="[a-zA-Z ]+" type="text" placeholder="Firstname *" required>
+                    <error ng-show="signupform.firstname.$dirty && signupform.firstname.$invalid">
+                        <li>use only alphabets and space.</li>
+                    </error>
+                </div>
+                <div class="input-field-2 tmargin-16">
+                    <input ng-model="user.lastname" name="lastname" title="Use only alphabets and space"  type="text" placeholder="Lastname">
+                </div>
+            </div>
+           
+            <div class="input-field-2 tmargin-16">
+                <input ng-model="user.email" name="email" ng-change="signupError=undefined" type="email" title="Please enter a valid email" placeholder="Email *">
+                <error ng-show="signupform.email.$invalid">
+                    <li>Please enter a valid email.</li>
+                </error>
+            </div>
+            <div class="field-block">
+                <div class="input-field-2 tmargin-16">
+                    <input  ng-model='user.password' name="password"  pattern="[a-zA-Z0-9@#$_]{6,}" type="Password" title="Password must have atleast 6 characters" placeholder="Password *" required>
+                    <error ng-show="signupform.password.$dirty && signupform.password.$invalid">
+                        <li>use only numerbers, alphabets and special characters(_@#$).</li>
+                        <li>must have atleast 6 characters.</li>
+                    </error>
+                </div>
+                <div class="input-field-2 tmargin-16">
+                    <input  ng-model='user.repassword' name="repassword"  type="text" placeholder="Confirm Password *" >
+                    <error ng-show="signupform.repassword.$dirty && user.password !== user.repassword">
+                        <li>passwords are not matching.</li>
+                    </error>
+                </div>
+            </div>
+            
+            <div class="field-block">
+                <div class="input-field-2 tmargin-16">
+                    <input  ng-model='user.phone' name="phone"  placeholder="Contact" >
+                </div>
+                <div class="input-field-2 tmargin-16">
+                    <input ng-model='user.university' name="university"  type="text" placeholder="University" >
+                </div>
+            </div>
+            
+            <div class="tmargin-16">
+                <input type="submit" class="signup-button" value="SIGNUP"/>
+                <div ng-show="signupError" class="signup-error ">
+                    {{signupError}}
+                </div>
+            </div>
+            <div class="login-link">
+                <a href="/">Already have account?<span>LogIn</span></a>
+            </div>
+        </form>
+    </div>
+</div>

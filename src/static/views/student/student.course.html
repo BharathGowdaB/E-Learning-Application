@@ -1,0 +1,100 @@
+<div ng-include="'static/views/navbar.html'" class="nav-bar"></div>
+
+<div class="course-page">
+    
+    <input id="hide-course-list" ng-model="flags.hideCourseList" type="checkbox"> 
+    <label class='double-arrow-show left-0' title="show course list" ng-show="flags.hideCourseList" for="hide-course-list"><img  src='/static/images/icons/double-right-arrow.png'></label>
+    
+    <input id="hide-module-list" ng-model="flags.hideModuleList" type="checkbox"> 
+    <label class='double-arrow-show rot-180 right-0' title="show module list" ng-show="flags.hideModuleList" for="hide-module-list"><img  src='/static/images/icons/double-right-arrow.png'></label>
+        
+    <coursetable course-id="course" new-course="hide" load-page-function="loadCourseList" pagination-manager="rootSortManager.courseList" new-label-function="loadCourse" load-label-function="loadCourse" flags="flags" list="list" course-list ="courseList"></coursetable>
+
+    <div class="course-card-container"> 
+        <div  class="course-card" ng-show="flags.isCourseCard">
+            <div class="poster">
+                <img class='bg' ng-attr-src="{{course.poster}}">
+                <img class='main' ng-attr-src="{{course.poster}}">
+            </div>
+            
+            <div class="block instructor-detail" >
+                <input type="checkbox" id="instructor-profile" ng-model="instructorProfile">
+                <label for="instructor-profile">
+                    <div><img class="instructor-pic" ng-attr-src="{{instructor.avatar}}">
+                        <span>{{instructor.firstname + ' ' + instructor.lastname}}</span>
+                    </div>
+                </label>
+
+                <div ng-show="instructorProfile" class="instructor-email">
+                    <div><strong>Email: </strong><span>{{instructor.email}}</span></div>
+                    <div><strong>Phone: </strong><span>{{instructor.phone}}</span></div>
+                    <div><strong>Universtiy: </strong><span>{{instructor.university}}</span></div>
+                </div>
+                
+                <div class="pin enrolled" title="enrolled">
+                    <span><img class="small-icon" src='static/images/icons/star.png'>&nbsp;</span><span>{{course.enrolled}}</span>
+                </div>
+            </div>
+            <div class="block">
+                <div class="title">
+                    <label>Title</label>
+                    <div class="input" type = "text" ng-model="course.title" placeholder="Course Title"> {{course.title}}</div>
+                </div>
+            </div>
+            <div class="block">
+                <div class="pin">Description</div>
+                <div class="description textarea" ng-model="course.description" type="text" placeholder="Type here..." disabled>{{course.description}}</div>
+            </div>
+            <div class="block">
+                <div class="pin">Module</div>
+                <table class="chapter-table">
+                    <tbody>
+                    <tr class="chapter-row text-center">
+                        <th class="chapter-slno">Sl.No.</th>
+                        <th class="chapter-title">Chapter</th>
+                        <th class="chapter-options">Action</th>
+                    </tr>
+                    <tr ng-repeat="(i, m) in course.modules"  class="chapter-row">
+                        <td class="chapter-slno"> <input placeholder="{{i + 1}}" value="{{i + 1}}" disabled></td>
+                        <td class="chapter-title" >{{m.chapter}}</td>
+                        <td class="chapter-options">
+                            <label class="chapter-action" for="{{m._id}}" >open</label>
+                        </td>
+                    </tr>
+                    <tr ng-show="course.modules.length == 0">
+                        <td colspan="3" class="empty-table"> No Module Described</td>
+                    </tr>
+                    </tbody>
+                </table>     
+            </div>
+
+            <div class="block">
+                <button type="button" class="enroll-button" ng-click="addCourse()" ng-show="!flags.isEnrolled">Enroll</button>
+                <button type="button" class="delete-button" ng-click="removeCourse()" ng-show="flags.isEnrolled">Unenroll</button>
+            </div>
+        </div>
+        <div  class="module-card" ng-show="!flags.isCourseCard" ng-submit="saveModule($event)">
+            <div class="block">
+                <div class="title">
+                    <label>Title</label>
+                    <div class="input" type = "text" name="course-title" ng-model="course.title" placeholder="Course Title" > {{course.title}} </div>
+                </div>
+            </div>
+            <div class="block">
+                <div class="title">
+                    <label>Chapter</label>
+                    <div class="input" type = "text" name="module-chapter" ng-model="module.chapter" placeholder="Module Name" > {{module.chapter}}</div>
+                </div>
+            </div> 
+            <div class="block flex-grow">
+                <div id="editor" class="border"></div>
+            </div>  
+            
+        </div>
+    </div>
+
+    <moduletable  new-module="hide" load-label-function="loadModule" flags="flags" list="list" module-list ="course.modules"></moduletable>
+
+</div>
+
+<message-logger logger="logger"></message-logger>

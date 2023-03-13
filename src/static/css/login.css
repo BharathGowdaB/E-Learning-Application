@@ -1,0 +1,190 @@
+#home-page{
+    display: flex;
+    text-align: center;
+}
+
+#home-page .logo{
+    width : 200px;
+    margin: auto;
+    padding: 16px 0px 30px 0px;
+}
+
+button{
+    cursor: pointer;
+}
+
+/* login */
+
+.left-home .background{
+    height: 100vh;
+    object-fit: cover;
+    width: 60vw;
+    box-shadow: -3px 0px 100px  var(--b_gray);
+}
+
+.right-home {
+    flex-grow: 1;
+    display: flex;
+}
+
+
+
+.right-home form{
+    margin: auto;
+    margin-left: 30px;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    background-color: var(--bg_white);
+    box-shadow: 3px 3px 10px 4px var(--b_gray);
+    min-width: 300px;
+}
+
+.right-home form *{
+    z-index: 2;
+}
+
+.right-home .login-error{
+    position: absolute;
+    top: -80%;
+    font-size: 12px;
+}
+
+.right-home .login-type {
+    display: flex;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    padding: 2px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.right-home .login-type-bg{
+    position: absolute;
+    width: 50%;
+    /* height: 120%; */
+    height:100%;
+    top: 0;
+    left: 0;
+    /* border-top-left-radius: 4px;
+    border-top-right-radius: 4px; */
+    border-radius: 12px;
+    background-color: var(--bg_blue);
+    z-index: 1;
+}
+
+.right-home .login-type label {
+    z-index: 2;
+    width: 100%;
+}
+
+.right-home .login-type input{
+    display: none;
+}
+
+.right-home .login-type input:nth-child(1) + label {
+    color: var(--b_black);
+    transition: color 0.1s 0.1s;
+}
+
+.right-home .login-type input:nth-child(1):checked + label{
+    color: var(--white);
+    transition: color 0.2s 0.1s;
+}
+
+.right-home .login-type input:nth-child(1):checked ~ .login-type-bg{
+    transform: translateX(0);
+    transition: transform 0.5s;
+}
+
+.right-home .login-type input:nth-child(3) + label {
+    color: var(--b_black);
+    transition: color 0.1s 0.1s;
+}
+
+.right-home .login-type input:nth-child(3):checked + label{
+    color: var(--white);
+    transition: color 0.2s 0.1s;
+}
+
+.right-home .login-type input:nth-child(3):checked ~ .login-type-bg{
+    transform: translateX(100%);
+    transition: transform 0.5s;
+}
+
+.right-home .form-button{
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.right-home .login-button{
+    width:100%;
+    background-color: var(--bg_blue);
+    color: var(--white);
+    border:none;
+    margin-right: 10px;
+    padding: 6px;
+    border-radius: 4px;
+}
+
+.right-home .login-button:hover{
+    background-color: var(--bg_dark_blue);
+}
+
+.right-home .signup-button{
+    width:100%;
+    background-color: var(--bg_green);
+    color: var(--white);
+    border:none;
+    margin-left: 10px;
+    padding: 6px;
+    border-radius: 4px;
+}
+
+.right-home .signup-button:hover{
+    background-color: var(--bg_dark_green);
+}
+
+@media only screen and (max-width:720px ) {
+    .right-home{
+        height: 100vh;
+        background-color: rgb(228, 233, 142);
+    }
+   
+    .input-field{
+        box-shadow: 2px 2px 5px 1px rgb(142, 142, 106);
+    }
+    .left-home .background{
+        display: none;
+    }
+
+    .right-home form{
+        margin:auto;
+        margin-top:12vh;
+    }
+
+}
+
+.forgot-link{
+    width: 100%;
+    text-align: left;
+    border-top: 1px solid var(--b_gray);
+    padding-top: 6px;
+    margin: 0px auto 0px;
+    font-size: 12px;
+    position: relative;
+    top:10px;
+}
+
+.forgot-link a{
+    color: var(--bg_dark_blue);
+    text-decoration: none;
+}
+
+.forgot-link span{
+    text-decoration: underline;
+    padding-left: 6px ;
+}

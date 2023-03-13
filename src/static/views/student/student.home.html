@@ -1,0 +1,50 @@
+<div ng-include="'static/views/navbar.html'" class="nav-bar"></div>
+
+<div class="home-page" >
+    <input id="hide-option-list" ng-model="flags.hideOptionList" type="checkbox"> 
+    <label class='double-arrow-show left-0' title="show course list" ng-show="flags.hideOptionList" for="hide-option-list"><img  src='/static/images/icons/double-right-arrow.svg'></label>
+    
+  
+    <div class="course-table" ng-show="!flags.hideOptionList">
+        <div class="list-title">
+            <span>Sort By</span>
+            <input id="hide-option-list" ng-model="flags.hideOptionList" type="checkbox"> 
+            <label class='double-arrow-hide rot-180' title="hide course list" for="hide-option-list"><img  src='/static/images/icons/double-right-arrow.svg'></label>
+        </div>
+        <ul class="course-list">
+            <li>
+                <div class="course-search-bar">
+                    <input type="text" ng-model="searchTitle" placeholder="Search"><label ng-click="loadCourses()"><img class="small-icon" src="static/images/icons/search.svg"></label>
+                </div>
+            </li>
+            <li class="course-label" ng-repeat="x in optionList">
+                <input type="radio" ng-model="list.sortBy"  ng-click="loadCourses()" name="option-list" id="{{x.value}}" value="{{x.value}}" >
+                <label  for="{{x.value}}" >
+                    <span>{{x.name}}</span>
+                    <div class="arrow" ><img src='static/images/icons/right-arrow.png'></div>
+                </label>
+            </li> 
+        </ul>
+    </div>
+
+
+    <div class="main-container">
+        <div class="card-container">
+            <div class="course-view" ng-repeat="x in courses" ng-click="readCourse(x._id)">
+                <img class="poster" ng-attr-src="{{'/course/id/' + x._id + '/poster'}}" src='/course/id/nil/poster'/>
+                <h4 class="title"><strong>{{x.title}}</strong></h4>
+                <div class="description">{{x.description}}</div>
+                <div  class="add-button">
+                    <div class="enrolled-num" >{{'Enrolled : ' + numToString(x.enrolled)}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="load-more" ng-show="flags.hasMore">
+            <button class="load-more-btn" ng-click="loadMore()">Load More</button>
+        </div>
+    </div>
+    
+    
+</div>
+<message-logger logger="logger"></message-logger>
+

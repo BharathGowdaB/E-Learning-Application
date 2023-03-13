@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>E-Learning</title>
+
+    <link rel="stylesheet" href="static/css/lib/w3.css">
+    <link rel="stylesheet" href="static/css/lib/prism.css">
+    <link rel="stylesheet" href="static/css/common.css">
+    <link rel="stylesheet" href="static/css/navbar.css">
+    <link rel="stylesheet" href="static/css/login.css">
+    <link rel="stylesheet" href="static/css/signup.css">
+    <link rel="stylesheet" href="static/css/table.css">
+
+    <script type="text/javascript" src="static/js/lib/angular.min.js"></script>
+    <script type="text/javascript" src="static/js/lib/angular-router.min.js"></script>
+    <script type="text/javascript" src="static/js/lib/angular-animate.min.js"></script>
+
+    <script src="static/tinymce/tinymce.min.js"></script>
+
+
+</head>
+<body>
+    <div  ng-app="myApp">
+        <div id="myApp" ng-controller='my-App' ng-view> </div>
+    </div>
+   
+    <script type="text/javascript" src="static/controllers/student/student.course.js"></script>    
+    <script type="text/javascript" src="static/controllers/student/student.home.js"></script>
+
+    <script type="text/javascript" src="static/controllers/instructor/instructor.student.js"></script>
+    <script type="text/javascript" src="static/controllers/instructor/instructor.course.js"></script>
+    <script type="text/javascript" src="static/controllers/instructor/instructor.home.js"></script>
+    
+    <script type="text/javascript" src="static/controllers/navbar.js"></script>
+    <script type="text/javascript" src="static/controllers/login.js"></script>
+    <script type="text/javascript" src="static/controllers/signup.js"></script>
+    
+    <script type="text/javascript" src="static/js/index.js"></script>
+
+</body>
+</html>

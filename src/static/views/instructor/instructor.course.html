@@ -1,0 +1,97 @@
+<div ng-include="'static/views/navbar.html'" class="nav-bar"></div>
+
+<div class="course-page">
+    
+    <input id="hide-course-list" ng-model="flags.hideCourseList" type="checkbox"> 
+    <label class='double-arrow-show left-0' title="show course list" ng-show="flags.hideCourseList" for="hide-course-list"><img  src='/static/images/icons/double-right-arrow.png'></label>
+    
+    <input id="hide-module-list" ng-model="flags.hideModuleList" type="checkbox"> 
+    <label class='double-arrow-show rot-180 right-0' title="show module list" ng-show="flags.hideModuleList" for="hide-module-list"><img  src='/static/images/icons/double-right-arrow.png'></label>
+        
+    <coursetable course-id="_id" load-page-function="loadCourseList" pagination-manager="rootSortManager.courseList" new-label-function="loadCourse" load-label-function="loadCourse" flags="flags" list="list" course-list ="courseList"></coursetable>
+   
+    <div class="course-card-container"> 
+        <form  class="course-card" ng-show="flags.isCourseCard" ng-submit="saveCourse($event)">
+            <div class="poster">
+                <img class='bg' ng-attr-src="{{course.poster}}">
+                <img class='main' ng-attr-src="{{course.poster}}">
+                <input type="file" ng-model='newCoursePoster' onchange="angular.element(this).scope().uploadPoster()" id="new-course-poster" accept="image/jpg, image/png, image/jpeg">
+                <label for="new-course-poster" class="new-poster"><img  title="new poster"src="/static/images/icons/camera.png"></label>
+                <label ng-click="deletePoster()" class="delete-poster"><img  title="delete poster" src="/static/images/icons/delete-avatar.png"></label>
+            </div>
+            
+            <div class="block">
+                <div class="title">
+                    <label>Title</label>
+                    <input type = "text" ng-model="course.title" placeholder="Course Title" ng-disabled="list.courseId != null" required>
+                </div>
+                <div class="pin enrolled" title="enrolled" ng-click="loadStudents()">
+                    <span><img class="small-icon" src='static/images/icons/star.png'>&nbsp;</span><span>{{course.enrolled}}</span>
+                </div>
+            </div>
+            <div class="block">
+                <div class="pin">Description</div>
+                <textarea class="description" ng-model="course.description" type="text" placeholder="Type here..." required></textarea>
+            </div>
+            <div class="block">
+                <div class="pin">Module</div>
+                <table class="chapter-table">
+                    <tbody>
+                    <tr class="chapter-row text-center">
+                        <th class="chapter-slno">Sl.No.</th>
+                        <th class="chapter-title">Chapter</th>
+                        <th class="chapter-options">Action</th>
+                    </tr>
+                    <tr ng-repeat="(i, m) in course.modules"  class="chapter-row">
+                        <td class="chapter-slno"> <input placeholder="{{i + 1}}" value="{{i + 1}}"/></td>
+                        <td class="chapter-title" >{{m.chapter}}</td>
+                        <td class="chapter-options">
+                            <label class="chapter-action" for="{{m._id}}" >Edit</label> 
+                            <img ng-click="list.moduleId = m._id; removeModule()" class="chapter-delete" src='/static/images/icons/delete.png'>
+                        </td>
+                    </tr>
+                    <tr class="chapter-row" >
+                        <td class="chapter-slno"><input placeholder="{{course.modules.length + 1}}"></td>
+                        <td class="chapter-title">Create New Module</td>
+                        <td class="chapter-options">
+                            <label class="chapter-create" for="radio-new-module">Create</label>
+                        </td>
+                    </tr>
+                    
+                    </tbody>
+                </table>     
+            </div>
+
+            <div class="block">
+                <button type="submit" class="save-button" >{{ list.courseId ? 'Save' : 'Create'}}</button>
+                <button type="button" class="delete-button" ng-click="removeCourse()" ng-show="list.courseId">Delete</button>
+            </div>
+        </form>
+        <form  class="module-card" ng-show="!flags.isCourseCard" ng-submit="saveModule($event)">
+            <div class="block">
+                <div class="title">
+                    <label>Title</label>
+                    <input type = "text" name="course-title" ng-model="course.title" placeholder="Course Title" ng-disabled="list.courseId" required>
+                </div>
+            </div>
+            <div class="block">
+                <div class="title">
+                    <label>Chapter</label>
+                    <input type = "text" name="module-chapter" ng-model="module.chapter" placeholder="Module Name"  required>
+                </div>
+            </div> 
+            <div class="block flex-grow">
+                <div id="editor"> </div>
+            </div>  
+            <div class="block">
+                <button type="submit" class="save-button">{{ list.moduleId ? 'Save' : 'Create'}}</button>
+                <button type="button" class="delete-button" ng-click="removeModule()">Delete</button>
+            </div>
+        </form>
+    </div>
+
+    <moduletable new-label-function="loadModule" load-label-function="loadModule" flags="flags" list="list" module-list ="course.modules"></moduletable>
+
+</div>
+
+<message-logger logger="logger"></message-logger>

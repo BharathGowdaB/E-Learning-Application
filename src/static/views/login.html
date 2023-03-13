@@ -1,0 +1,36 @@
+<div id='home-page'>
+    <div class='left-home' onclick="window.open('https://bit-bangalore.edu.in')">
+        <img class='background' src='static/images/bg/background1.jpg'>
+    </div>
+    <div class='right-home' >
+        <form name="loginform" method="post" ng-submit="submit()">
+            <div>
+                <img class='logo' src='static/images/icons/logo.png'>
+            </div>
+            
+            <div class="login-type">
+                <input type="radio" id="type-student" ng-model="user.type" value="student" checked><label for='type-student'>Student</label>
+                <input type="radio" id="type-instructor" ng-model="user.type" value="instructor"><label for='type-instructor'>Instructor</label>
+                <div class="login-type-bg"></div>
+                <div class="login-error">
+                    <error ng-show="loginError" >{{loginError}}</error>
+                </div>
+            </div>
+            <div class="input-field-2">
+                <input  ng-model="user.email" name="Email" ng-change="loginError=undefined"  placeholder="Email address" required>
+            </div>
+            <div class="input-field-2 tmargin-32">
+                <input  ng-model='user.password' name="password" ng-change="loginError=undefined"  type="Password"   placeholder="Password" required>
+            </div>
+            <div class="form-button tmargin-32">
+                <input type="submit" class="login-button"  value="LOGIN"/>
+                <input type="button" class="signup-button" ng-click="register($event)" value="SIGNUP"/>
+            </div>
+            <div class="forgot-link">
+                <a href="/">Forgot password?<span>Reset</span></a>
+            </div>
+            
+        </form>
+    </div>
+</div>
+
