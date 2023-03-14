@@ -38,7 +38,7 @@ button{
     flex-direction: column;
     padding-bottom: 20px;
     background-color: var(--bg_white);
-    box-shadow: 3px 3px 10px 4px var(--b_gray);
+    box-shadow: 3px 3px 10px 4px var(--b_light_gray);
     min-width: 300px;
 }
 
