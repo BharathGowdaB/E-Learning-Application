@@ -49,6 +49,7 @@
     width: max-content;
     position: relative;
     top: 24px;
+    margin-bottom: 10px;
 }
 
 .signup-form .login-type-bg{
@@ -140,11 +141,17 @@
 }
 
 .login-link a{
-    color: var(--bg_dark_blue);
+    color: var(--dark_blue);
     text-decoration: none;
 }
 
 .login-link span{
     text-decoration: underline;
     padding-left: 6px;
+    font-weight: 700;
+}
+
+.login-link span:hover{
+    color: var(--green);
+    font-weight: 700;
 }

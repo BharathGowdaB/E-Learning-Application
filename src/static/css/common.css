@@ -1,8 +1,9 @@
 :root{
+
     /* font color */
     --semi-transparent: rgba(255, 255, 255, 0.169);
-    --white : #ffffff;
-    --black : #000000;
+    --white : #e9ecef;
+    --black : #212529;
     --gray : #808080;
     --dark_gray : #393939;
     --light_blue: #2196f3;
@@ -36,6 +37,7 @@
     --bg_light_purple: #e3ddfb;
     --bg_purple: #b000cb;
     --bg_light_gray :  #9b9a9a96;
+
 }
 
 * {
@@ -43,11 +45,12 @@
 }
 
 body{
-    background-color: rgb(205, 203, 203); 
-    font-family: Arial; 
+    background-color: rgb(220, 220, 220); 
+    font-family: sans-serif; 
+    user-select: none;
 }
 
-.button{
+button, label[for]{
     cursor: pointer;
 }
 
@@ -305,14 +308,16 @@ error{
     flex-direction: column;
     margin: 15px 15px;
     box-shadow: 1px 2px 5px 2px rgba(128, 128, 128, 0.619);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 
 .course-view .poster{
     width:100%;
     object-fit: cover;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 .course-view .title{
@@ -364,6 +369,7 @@ error{
     margin: auto;
     width: 500px;
     background-color: var(--white);
+    border-radius: 8px;
 }
 
 .message-log-screen .loading-icon{
@@ -466,9 +472,11 @@ error{
     background-color: var(--bg_purple);
     border: none;
     margin-bottom: 10px ;
+    padding: 6px 16px;
 }
 
 .load-more-btn:hover{
     color: var(--purple);
+    
     background-color: var(--bg_white);
 }
