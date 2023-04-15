@@ -11,7 +11,7 @@
     <coursetable course-id="course" new-course="hide" load-page-function="loadCourseList" pagination-manager="rootSortManager.courseList" new-label-function="loadCourse" load-label-function="loadCourse" flags="flags" list="list" course-list ="courseList"></coursetable>
 
     <div class="course-card-container"> 
-        <div  class="course-card" ng-show="flags.isCourseCard">
+        <div id="id-course-card" class="course-card" ng-show="flags.isCourseCard">
             <div class="poster">
                 <img class='bg' ng-attr-src="{{course.poster}}">
                 <img class='main' ng-attr-src="{{course.poster}}">
@@ -73,7 +73,7 @@
                 <button type="button" class="delete-button" ng-click="removeCourse()" ng-show="flags.isEnrolled">Unenroll</button>
             </div>
         </div>
-        <div  class="module-card" ng-show="!flags.isCourseCard" ng-submit="saveModule($event)">
+        <div id="id-module-card" class="module-card" ng-show="!flags.isCourseCard" ng-submit="saveModule($event)">
             <div class="block">
                 <div class="title">
                     <label>Title</label>

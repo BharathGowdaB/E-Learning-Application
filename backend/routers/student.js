@@ -1,6 +1,7 @@
 const express = require('express')
 const res = require('express/lib/response')
 const mongoose = require('mongoose')
+const bcrypt = require('bcryptjs')
 const multer = require('multer')
 const sharp = require('sharp')
 const mg = require('../manager')
@@ -15,7 +16,7 @@ const router = new express.Router()
 router.get('/id/:id/avatar', async (req, res) => {
     try{
         const student = await Student.findById(req.params.id)
-        if(!student || !student.avatar) return res.sendFile(mg.defaults.avatar) //res.status(404).send()
+        if(!student || !student.avatar) throw new Error("No Avatar")
 
         res.set('Content-Type', 'image/png')
         res.send( student.avatar)
@@ -157,7 +158,7 @@ router.patch('/password', auth, async (req, res) => {
         if(!isMatch) throw {error : mg.error.update}
 
         req.student.password = req.body.newPassword
-        req.student.save()
+        await req.student.save()
         res.send({student : req.student})
 
     } catch(err){
@@ -199,6 +200,7 @@ router.patch('/addCourse/:courseId', auth, async (req, res) => {
         res.send({studentCourse:sc})
 
     } catch (err){
+        console.log(err)
         res.status(400).send(err)
     }
 })

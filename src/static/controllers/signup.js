@@ -3,7 +3,7 @@ angular.module('Signup',[]).
     controller('Signup', function($scope,$rootScope , $http, $location, $window, config){
         $scope.create = async function(e){
             try{
-                if(!($scope.signupform.$valid && $scope.user.repassword === $scope.user.password)) throw new Error('passwords not matching')
+                if(!($scope.signupform.$valid && $scope.user.repassword === $scope.user.password)) return $scope.signupError = 'passwords not matching'
                 
                 const url = config.domain + '/' + ($scope.user.type || 'student')
 

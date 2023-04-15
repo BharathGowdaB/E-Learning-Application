@@ -1,4 +1,3 @@
-
 #signup-page{
     position: relative;
     text-align: center;
@@ -16,6 +15,7 @@
 .signup-bg img{
     width: 100vw;
     height: 100vh;
+
     object-fit: cover;
     filter: blur(8px);
     -webkit-filter: blur(8px);
@@ -25,30 +25,33 @@
     width: 100vw;
     height: 100vh;
     display: flex;
+    padding: 2rem;
 }
 
 .signup-form form{
     background-color: var(--white);
     z-index: 2;
     position: relative;
+
     margin: auto;
-    padding: 20px;
+    padding: 1rem;
+    transform: translateY(-20px);
+
     border-radius: 8px;
 }
 
-
 .signup-form .login-type {
     display: flex;
-    text-align: center;
     position: relative;
     cursor: pointer;
-    padding: 2px;
-    font-size: 14px;
-    margin-left: 10px;
     width: max-content;
-    position: relative;
-    top: 24px;
-    margin-bottom: 10px;
+    top: 1.5rem;
+
+    margin-bottom: 0.75rem;
+    padding: 0.25rem;
+    margin-left: 0.75rem;
+
+    text-align: center;
 }
 
 .signup-form .login-type-bg{
@@ -57,15 +60,17 @@
     height: 100%;
     top: 0;
     left: 0;
-    border-radius: 12px;
-    background-color: var(--bg_blue);
     z-index: 1;
+
+    border-radius: 1rem;
+    background-color: var(--bg_blue);
 }
 
 .signup-form .login-type label {
     z-index: 2;
     width: 90px;
-    padding: 0px 16px;
+
+    padding: 0px 1rem;
 }
 
 .signup-form .login-type input{
@@ -103,22 +108,25 @@
 }
 
 
-
 .signup-form .field-block{
     display: flex;
 }
 
 .signup-form  .input-field-2{
-    padding: 10px;
+    padding: 0.75rem;
 }
 
 .signup-form .signup-button{
     width: 100%;
-    background-color: var(--bg_green);
+    margin-top: 1rem;
+
+    padding: 0.5rem;
+
     color: var(--white);
+
     border:none;
-    padding: 6px;
     border-radius: 4px;
+    background-color: var(--bg_green);
 }
 
 .signup-form .signup-button:hover{
@@ -126,17 +134,15 @@
 }
 
 .signup-form .signup-error{
-    font-size: 12px;
+    font-size: 0.75rem;
     color: red;
 }
 
 .login-link{
     width: 90%;
     border-top: 1px solid var(--b_gray);
-    padding-top: 10px;
-    margin: 10px auto 0px;
-    font-size: 14px;
-    
+    padding-top: 1rem;
+    margin: 0.5rem auto 0px;    
 }
 
 .login-link a{
@@ -145,9 +151,10 @@
 }
 
 .login-link span{
-    text-decoration: underline;
-    padding-left: 6px;
+    padding-left: 0.5rem;
+
     font-weight: 700;
+    text-decoration: underline;
 }
 
 .login-link span:hover{

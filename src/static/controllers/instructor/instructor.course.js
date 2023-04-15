@@ -197,7 +197,7 @@ angular.module("InstructorCourse", ["Navbar", 'ngAnimate'])
                     })
                 } 
 
-                $rootScope.logger.close()
+                $rootScope.logger.alert("Saved Successfully")
             } catch(err){
                 $rootScope.logger.error(err)
             } finally{
@@ -335,6 +335,12 @@ angular.module("InstructorCourse", ["Navbar", 'ngAnimate'])
                     hideCourseList: false,
                     hideModuleList: false,
                 }
+
+                if(Math.max(document.documentElement.clientWidth, window.innerWidth || 0) < 720){
+                    $scope.flags.hideCourseList = true
+                    $scope.flags.hideModuleList = true
+                }
+    
 
                 if(!$rootScope.user)  await $rootScope.loadUser('instructor')
                 

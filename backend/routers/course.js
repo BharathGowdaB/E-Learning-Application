@@ -121,7 +121,6 @@ router.post('/', auth, async (req, res) => {
  
         res.status(201).send({course})
     } catch(err){
-        
         res.status(400).send(err)
     } 
 })

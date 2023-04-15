@@ -30,12 +30,12 @@ router.get('/id/:id', async (req, res) => {
 router.get('/id/:id/avatar', async (req, res) => {
     try{
         const instructor = await Instructor.findById(req.params.id)
-        if(!instructor || !instructor.avatar) return res.sendFile(mg.defaults.avatar) //res.status(404).send()
+        if(!instructor || !instructor.avatar) throw new Error("No Avatar")
 
         res.set('Content-Type', 'image/png')
         res.send( instructor.avatar)
     } catch(err){
-        res.sendFile(mg.defaults.Poster)
+        res.sendFile(mg.defaults.avatar)
     }
 })
 
@@ -56,16 +56,22 @@ router.get('/id/:id/courseList', async (req, res) => {
             })
         }
 
+        const limit = req.query.limit && parseInt(req.query.limit) <=  mg.constants.maxLimit ? parseInt(req.query.limit) : mg.constants.maxLimit
+        const skip = parseInt(req.query.skip) || 0
+
+
         await instructor.populate({path: 'courses', select: '_id title createdAt', options:{
-            limit: (parseInt(req.query.limit) > mg.constants.maxLimit ? mg.constants.maxLimit : parseInt(req.query.limit)) || mg.constants.maxLimit,
-            skip: parseInt(req.query.skip),
+            limit,
+            skip,
             sort
         }})
 
-        res.send(instructor.courses)
-
+                
+        const total = await Course.countDocuments({instructor: instructor._id})
+        res.send({courses: instructor.courses, skip, total})
 
     } catch(err){
+        console.log(err)
         res.status(400).send(err)
     }
 })
@@ -191,7 +197,7 @@ router.patch('/password', auth, async (req, res) => {
         if(!isMatch) throw {error : mg.error.update}
 
         req.instructor.password = req.body.newPassword
-        req.instructor.save()
+        await req.instructor.save()
         res.send({instructor : req.instructor})
 
     } catch(err){

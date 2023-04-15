@@ -38,8 +38,8 @@
             <tbody>
             <tr class="student-header text-center">
                 <th class="student-slno">Sl.No.</th>
-                <th class="student-firstname"> Firstname </th>
-                <th class="student-lastname">Lastname</th>
+                <th class="student-firstname" ng-hide="flags.isMobile"> Firstname </th>
+                <th class="student-lastname" ng-hide="flags.isMobile">Lastname</th>
                 <th class="student-email">Email</th>
                 <th class="student-createdAt">    
                     <input type="checkbox" ng-model="flags.createdAtDesc" ng-change="loadStudents()" id="is-createdAtDesc">                 
@@ -52,8 +52,8 @@
             </tr>
             <tr ng-repeat="(i, s) in studentList"  class="chapter-row">
                 <td class="student-slno"> {{i + 1 + sortManager.studentList.skip}}</td>
-                <td class="student-firstname">{{s.student.firstname}}</td>
-                <td class="student-lastname">{{s.student.lastname}}</td>
+                <td class="student-firstname" ng-hide="flags.isMobile">{{s.student.firstname}}</td>
+                <td class="student-lastname" ng-hide="flags.isMobile">{{s.student.lastname}}</td>
                 <td class="student-email">{{s.student.email}}</td>
                 <td class="student-createdAt">{{createdAtToString(s.createdAt)}}</td>
                 <td class="student-options">

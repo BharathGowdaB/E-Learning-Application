@@ -85,6 +85,16 @@ angular.module("InstructorStudent",["Navbar"])
                     hideCourseList: false,
                     hideStudentDetails: true,
                     createdAtDesc: true,
+                    isMobile: false
+                }
+
+                
+                if(Math.max(document.documentElement.clientWidth, window.innerWidth || 0) < 720){
+                    $scope.flags.hideCourseList = true
+
+                    if(Math.max(document.documentElement.clientWidth, window.innerWidth || 0) < 600){
+                        $scope.flags.isMobile = true
+                    }
                 }
                 
                 $scope.sortManager ={ 

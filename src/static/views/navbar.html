@@ -3,7 +3,8 @@
         <img src='/static/images/icons/logo2.png'>
     </div>
     <ul>
-        <li ng-repeat="x in links"  ng-click="redirect(e,x.href)"><span>{{ x.name }}</span></li>
+        <li ng-repeat="x in links" class="nav-ul-text" ng-click="redirect(e,x.href)"><span>{{ x.name }}</span></li>
+        <li ng-repeat="x in links" class="nav-ul-icon" ng-click="redirect(e,x.href)"><span><img class="nav-ul-icons"ng-attr-src="{{x.src}}" title={{x.alt}}></span></li>
     </ul>
     <div class="profile" >
         <div ng-click="clickPic()">

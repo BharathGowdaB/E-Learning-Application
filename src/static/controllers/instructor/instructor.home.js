@@ -79,6 +79,10 @@ angular.module('InstructorHome',["Navbar"])
                     hideOptionList: false,
                     hasMore: true
                 }
+
+                if(Math.max(document.documentElement.clientWidth, window.innerWidth || 0) < 720){
+                    $scope.flags.hideOptionList = true
+                }
     
                 if(!$rootScope.user)  await $rootScope.loadUser('instructor')
                 

@@ -35,7 +35,11 @@
                 <h4 class="title"><strong>{{x.title}}</strong></h4>
                 <div class="description">{{x.description}}</div>
                 <div  class="add-button">
-                    <div class="enrolled-num" >{{'Enrolled : ' + numToString(x.enrolled)}}</div>
+                    <!-- <div class="enrolled-num" >{{'Enrolled : ' + numToString(x.enrolled)}}</div> -->
+                    <div class="enrolled" title="enrolled">
+                        <span>{{numToString(x.enrolled)}}</span>
+                        <span><img class="small-icon" src='static/images/icons/star.png'>&nbsp;</span>
+                    </div>
                 </div>
             </div>
         </div>

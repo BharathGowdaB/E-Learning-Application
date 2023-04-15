@@ -39,7 +39,7 @@
                     </error>
                 </div>
                 <div class="input-field-2 tmargin-16">
-                    <input  ng-model='user.repassword' name="repassword"  type="text" placeholder="Confirm Password *" >
+                    <input  ng-model='user.repassword' name="repassword"  type="text" placeholder="Confirm Password *" required>
                     <error ng-show="signupform.repassword.$dirty && user.password !== user.repassword">
                         <li>passwords are not matching.</li>
                     </error>

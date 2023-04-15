@@ -143,9 +143,14 @@ angular.module("Navbar",[])
         
         $scope.init = function() {
             if($rootScope.type == 'instructor')
-                $scope.links=[{name:'Home',href:'/instructor/home',  class: 'selected'},{name:'Course',href:'/instructor/course'},{name:'Students',href:'/instructor/students'}];
+                $scope.links=[
+                    {name:'Home',href:'/instructor/home',  class: 'selected', alt: 'home', src :'/static/images/icons/home.svg'},
+                    {name:'Course',href:'/instructor/course', alt : 'course', src :'/static/images/icons/course.svg'},
+                    {name:'Students',href:'/instructor/students', alt : 'student', src :'/static/images/icons/student.svg'}];
             else{
-                $scope.links=[{name:'Home',href:'/student/home',  class: 'selected'},{name:'Course',href:'/student/course'}];
+                $scope.links=[
+                    {name:'Home',href:'/student/home',  class: 'selected',alt: 'home', src :'/static/images/icons/home.svg'},
+                    {name:'Course',href:'/student/course',alt : 'course', src :'/static/images/icons/course.svg'}];
             }
             $scope.count=0
         }

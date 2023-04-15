@@ -54,7 +54,13 @@ angular.module("StudentCourse", ["Navbar", 'ngAnimate'])
                 //$window.document.querySelector('#editor').innerHTML = $scope.module.content
                 $scope.flags.isCourseCard = false
 
+                $window.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: "smooth"
+                })
                 $rootScope.logger.close()
+
             } catch(err){
                 $rootScope.logger.error(err)
             }   finally{
@@ -172,6 +178,11 @@ angular.module("StudentCourse", ["Navbar", 'ngAnimate'])
                     hideCourseList: false,
                     hideModuleList: false,
                     isEnrolled: true,
+                }
+
+                if(Math.max(document.documentElement.clientWidth, window.innerWidth || 0) < 720){
+                    $scope.flags.hideCourseList = true
+                    $scope.flags.hideModuleList = true
                 }
 
                 if(!$rootScope.user)  await $rootScope.loadUser('student')
