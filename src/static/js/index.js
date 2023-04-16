@@ -365,7 +365,7 @@ app.directive("coursetable", function(){
                         </div>
                     </div>
                     <input id="hide-course-list" ng-model="flags.hideCourseList" type="checkbox"> 
-                    <label class='double-arrow-hide rot-180' title="hide course list" for="hide-course-list"><img  src='/static/images/icons/double-right-arrow.png'></label>
+                    <label class='double-arrow-hide rot-180' title="hide course list" for="hide-course-list"><img  src='/static/images/icons/double-right-arrow.svg'></label>
                 </div>
             </div>
             <ul class="course-list">
@@ -409,7 +409,7 @@ app.directive("moduletable", function(){
      <div class="list-title">
          <span>Modules</span>
          <input id="hide-module-list" ng-model="flags.hideModuleList" type="checkbox"> 
-         <label class='double-arrow-hide' title="show module list" ng-show="!flags.hideModuleList" for="hide-module-list"><img  src='/static/images/icons/double-right-arrow.png'></label>
+         <label class='double-arrow-hide' title="show module list" ng-show="!flags.hideModuleList" for="hide-module-list"><img  src='/static/images/icons/double-right-arrow.svg'></label>
      </div>
      <ul class="module-list" >  
          <li class="module-label" ng-show="!(newModule == 'hide')">

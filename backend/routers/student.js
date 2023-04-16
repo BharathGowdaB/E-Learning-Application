@@ -99,6 +99,7 @@ router.post('/' , async (req, res) => {
 
 router.post('/login', async (req, res) => {
     try{
+        console.log("login")
         const student = await Student.findByCredientials(req.body.email.toLowerCase(), req.body.password)
         const token = await student.generateAuthToken()
 

@@ -3,10 +3,10 @@
 <div class="course-page">
     
     <input id="hide-course-list" ng-model="flags.hideCourseList" type="checkbox"> 
-    <label class='double-arrow-show left-0' title="show course list" ng-show="flags.hideCourseList" for="hide-course-list"><img  src='/static/images/icons/double-right-arrow.png'></label>
+    <label class='double-arrow-show left-0' title="show course list" ng-show="flags.hideCourseList" for="hide-course-list"><img  src='/static/images/icons/double-right-arrow.svg'></label>
     
     <input id="hide-module-list" ng-model="flags.hideModuleList" type="checkbox"> 
-    <label class='double-arrow-show rot-180 right-0' title="show module list" ng-show="flags.hideModuleList" for="hide-module-list"><img  src='/static/images/icons/double-right-arrow.png'></label>
+    <label class='double-arrow-show rot-180 right-0' title="show module list" ng-show="flags.hideModuleList" for="hide-module-list"><img  src='/static/images/icons/double-right-arrow.svg'></label>
         
     <coursetable course-id="course" new-course="hide" load-page-function="loadCourseList" pagination-manager="rootSortManager.courseList" new-label-function="loadCourse" load-label-function="loadCourse" flags="flags" list="list" course-list ="courseList"></coursetable>
 
