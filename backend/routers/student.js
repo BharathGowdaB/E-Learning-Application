@@ -99,7 +99,7 @@ router.post('/' , async (req, res) => {
 
 router.post('/login', async (req, res) => {
     try{
-        console.log("login")
+        // console.log("login")
         const student = await Student.findByCredientials(req.body.email.toLowerCase(), req.body.password)
         const token = await student.generateAuthToken()
 
@@ -195,7 +195,8 @@ router.patch('/me/avatar' , auth, upload.single('avatar') , async(req, res) => {
 
 router.patch('/addCourse/:courseId', auth, async (req, res) => {
     try{
-        const sc = new StudentCourse({student: req.student._id, course: req.params.courseId})
+        const sc = new StudentCourse({
+            student: req.student._id, course: req.params.courseId})
         await sc.save()
 
         res.send({studentCourse:sc})
@@ -208,7 +209,8 @@ router.patch('/addCourse/:courseId', auth, async (req, res) => {
 
 router.delete('/removeCourse/:courseId', auth, async (req, res) => {
     try{
-        const sc = await StudentCourse.findOneAndDelete({student: req.student._id, course: req.params.courseId})
+        const sc = await StudentCourse.findOneAndDelete({
+                student: req.student._id, course: req.params.courseId})
         
         res.send({sc})
     } catch (err){
